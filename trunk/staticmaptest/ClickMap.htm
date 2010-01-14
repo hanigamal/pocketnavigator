@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Google Maps API Sample</title>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAA1XbMiDxx_BTCY2_FkPh06RRaGTYH6UMl8mADNa0YKuWNNa8VNxQEerTAUcfkyrr6OwBovxn7TDAH5Q"></script>
+    <script type="text/javascript">
+     var map;
+    function initialize() {
+      if (GBrowserIsCompatible()) {
+        map = new GMap2(document.getElementById("map_canvas"));
+        
+        /*map.setCenter(new GLatLng(17.408140830184717, 78.47362518310547), 13);*/
+        map.setCenter(new GLatLng(17.44991, 78.3795), 15);
+    
+
+        GEvent.addListener(map,"click", function(overlay,latlng) {     
+          if (latlng) {   
+            var div_lat=document.getElementById("Lat");
+            var div_lng=document.getElementById("Lang");
+            div_lat.innerHTML=''+latlng.lat()+'';
+            div_lng.innerHTML=''+latlng.lng()+'';
+            
+            document.getElementById("Zoom").innerHTML= ''+map.getZoom();
+          }
+        });
+        map.addControl(new GSmallMapControl());
+        map.addControl(new GMapTypeControl());
+      }
+    }
+
+    </script>
+  </head>
+  <body onload="initialize()" onunload="GUnload()" style="font-family: Arial;border: 0 none;">
+    <div id="map_canvas" style="width: 400px; height: 400px"></div>
+    <div id="Lat" ></div>
+    <div id="Lang" ></div>
+    <div id="Zoom" ></div>
+  </body>
+</html>​

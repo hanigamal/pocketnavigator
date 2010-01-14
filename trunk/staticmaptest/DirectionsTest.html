@@ -1,0 +1,211 @@
+﻿<!--
+  copyright (c) 2009 Google inc.
+
+  You are free to copy and use this sample.
+  License can be found here: http://code.google.com/apis/ajaxsearch/faq/#license
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Google Maps API Sample</title>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAA1XbMiDxx_BTCY2_FkPh06RRaGTYH6UMl8mADNa0YKuWNNa8VNxQEerTAUcfkyrr6OwBovxn7TDAH5Q"></script>
+    <style type="text/css">
+    body {
+      font-family: Verdana, Arial, sans serif;
+      font-size: 11px;
+      margin: 2px;
+    }
+    table.directions th {
+      background-color:#EEEEEE;
+    }
+
+    img {
+      color: #000000;
+    }
+    </style>
+    <script type="text/javascript">
+    
+        Number.prototype.toRad = function() {  // convert degrees to radians
+      return this * Math.PI / 180;
+    }
+
+    Number.prototype.toDeg = function() {  // convert radians to degrees (signed)
+      return this * 180 / Math.PI;
+    }
+
+    Number.prototype.toBrng = function() {  // convert radians to degrees (as bearing: 0...360)
+      return (this.toDeg()+360) % 360;
+    }
+
+    function GetBearing(GLatLng1,GLatLng2)
+    {
+        
+        var lat1=GLatLng1.lat();
+        var lon1=GLatLng1.lng();
+        var lat2=GLatLng2.lat();
+        var lon2=GLatLng2.lng();
+        lat1 = lat1.toRad(); 
+        lat2 = lat2.toRad();
+        var dLon = (lon2-lon1).toRad();
+
+        var y = Math.sin(dLon) * Math.cos(lat2);
+        var x = Math.cos(lat1)*Math.sin(lat2) -
+         Math.sin(lat1)*Math.cos(lat2)*Math.cos(dLon);
+        return Math.atan2(y, x).toBrng();
+    }
+    var map;
+    var gdir;
+    var geocoder = null;
+    var addressMarker;
+    
+    function initialize() {
+      if (GBrowserIsCompatible()) {      
+        map = new GMap2(document.getElementById("map_canvas"));
+        gdir = new GDirections(map, document.getElementById("directions"));
+        GEvent.addListener(gdir, "load", onGDirectionsLoad);
+        GEvent.addListener(gdir, "error", handleErrors);
+    
+        //setDirections("5995 Pacific Mesa Ct, San Diego, CA 92121", "4550 La Jolla Village Dr, San Diego, CA 92122", "en_US");
+      }
+    }
+    
+    function setDirections(fromAddress, toAddress, locale) {
+      gdir.load("from: " + fromAddress + " to: " + toAddress,
+                { "locale": locale });
+    }
+    
+    function handleErrors(){
+     if (gdir.getStatus().code == G_GEO_UNKNOWN_ADDRESS)
+       alert("No corresponding geographic location could be found for one of the specified addresses. This may be due to the fact that the address is relatively new, or it may be incorrect.\nError code: " + gdir.getStatus().code);
+     else if (gdir.getStatus().code == G_GEO_SERVER_ERROR)
+       alert("A geocoding or directions request could not be successfully processed, yet the exact reason for the failure is not known.\n Error code: " + gdir.getStatus().code);
+     
+     else if (gdir.getStatus().code == G_GEO_MISSING_QUERY)
+       alert("The HTTP q parameter was either missing or had no value. For geocoder requests, this means that an empty address was specified as input. For directions requests, this means that no query was specified in the input.\n Error code: " + gdir.getStatus().code);
+    
+    //   else if (gdir.getStatus().code == G_UNAVAILABLE_ADDRESS)  <--- Doc bug... this is either not defined, or Doc is wrong
+    //     alert("The geocode for the given address or the route for the given directions query cannot be returned due to legal or contractual reasons.\n Error code: " + gdir.getStatus().code);
+       
+     else if (gdir.getStatus().code == G_GEO_BAD_KEY)
+       alert("The given key is either invalid or does not match the domain for which it was given. \n Error code: " + gdir.getStatus().code);
+    
+     else if (gdir.getStatus().code == G_GEO_BAD_REQUEST)
+       alert("A directions request could not be successfully parsed.\n Error code: " + gdir.getStatus().code);
+      
+     else alert("An unknown error occurred.");
+    }
+    function handleNoFlash(errorCode) {
+        if (errorCode == FLASH_UNAVAILABLE) {
+        alert("Error: Flash doesn't appear to be supported by your browser");
+        return;
+        }
+    }
+    function onGDirectionsLoad()
+    { 
+	  var i=0;
+	  var j=0;
+	  var n=0;
+	  var numb_of_steps=0;
+	  var CurrentRoute=null;
+	  var CurStep=null;
+	  n=gdir.getNumRoutes();
+	  var CurPolyLine=gdir.getPolyline();
+	  var stepCounter=0;
+	  var myHTML="<table Id=\"tDirections\">";
+	  for(i=0;i<n;i++)
+	  {
+		CurrentRoute=gdir.getRoute(i);
+		numb_of_steps=CurrentRoute.getNumSteps();
+		for(j=0;j<numb_of_steps;j++)
+		{
+			
+			var index1=CurrentRoute.getStep(j).getPolylineIndex();
+            var index2=index1+1;
+            var latlan1=CurPolyLine.getVertex(index1);
+            var latlan2=CurPolyLine.getVertex(index2);
+            var ThisYaw=GetBearing(latlan1,latlan2);
+
+            var Loc=CurrentRoute.getStep(j).getLatLng();
+            var panoramaOptions;
+            var ThisPOV={"yaw":ThisYaw,"pitch":0,"zoom":0};
+            panoramaOptions = {latlng:Loc, pov:ThisPOV};
+            var DisplayString=CurrentRoute.getStep(j).getDescriptionHtml();
+            
+			stepCounter++;
+			myHTML+="<tr>";
+			myHTML+="<td>";
+			myHTML+="<div class=\"steps\">";
+			myHTML+="<div class=\"dStepDesc\">";
+			myHTML+=DisplayString;
+			myHTML+="</div>";
+			myHTML+="<div class=\"dLat\">";
+			myHTML+=Loc.lat();
+			myHTML+="</div>";
+			myHTML+="<div class=\"dLag\">";
+			myHTML+=Loc.lng();
+			myHTML+="</div>";
+			
+			myHTML+="<div class=\"dPolyLineIndex\">";
+			myHTML+=""+CurrentRoute.getStep(j).getPolylineIndex();
+			myHTML+="</div>";
+			
+			
+			myHTML+="</div>";
+			myHTML+="</td>";
+			stepCounter++;
+			myHTML+="</tr>";
+		}
+	  }
+	  myHTML+="</table>";
+	 
+	  myHTML+="<div id=\"Points\">";
+      var CurPolyLine = gdir.getPolyline();
+      for(var c=0;c<CurPolyLine.getVertexCount();c++)
+      {
+            var latlan = CurPolyLine.getVertex(c)
+            myHTML+="<div>";
+            
+            myHTML+="<div class=\"pLat\">";
+            myHTML+=latlan.lat();
+            myHTML+="</div>";
+            myHTML+=" , ";
+            myHTML+="<div class=\"pLng\">";
+            myHTML+=latlan.lng();
+            myHTML+="</div>";
+            
+            myHTML+="</div>";
+      }
+      myHTML+="</div>";
+      var myDirectionDiv=document.getElementById("directionsSlide");
+	  myDirectionDiv.innerHTML=myHTML;
+	  var mytip=document.getElementById("lTip");
+	  mytip.innerHTML="Directions Loaded!!...";
+	  
+    }
+ </script>
+  </head>
+  <body onload="initialize()" onunload="GUnload()" style="font-family: Arial;border: 0 none;">
+    <h2>Directions</h2>
+    <div id="lTip">Tip: Click GetDirections to calculate direction steps</div>
+    <br/>
+    <table class="directions">
+      <tr>
+        <td valign="top">
+          <div id="map_canvas" style="width: 310px; height: 400px"></div>
+        <td>
+        
+      </tr>
+      <tr>
+      <td valign="top">
+          <div id="directions" style="width: 275px"></div>
+        <td>
+      </tr>
+    </table>
+    <br />
+    <div id="directionsSlide" >
+        this is test content
+    </div>
+  </body>
+</html>
