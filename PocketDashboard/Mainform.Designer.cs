@@ -28,55 +28,57 @@ namespace PocketDashboard
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.mainMenu1 = new System.Windows.Forms.MainMenu();
-            this.menuItem1 = new System.Windows.Forms.MenuItem();
-            this.timer1 = new System.Windows.Forms.Timer();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Mainform));
+            this.btDashboard = new System.Windows.Forms.Button();
+            this.btDirections = new System.Windows.Forms.Button();
+            this.btExit = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel1
+            // btDashboard
             // 
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Location = new System.Drawing.Point(13, 58);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(215, 216);
+            this.btDashboard.BackColor = System.Drawing.Color.DimGray;
+            this.btDashboard.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btDashboard.ForeColor = System.Drawing.Color.White;
+            this.btDashboard.Location = new System.Drawing.Point(0, 143);
+            this.btDashboard.Name = "btDashboard";
+            this.btDashboard.Size = new System.Drawing.Size(240, 59);
+            this.btDashboard.TabIndex = 0;
+            this.btDashboard.Text = "DashBoard";
+            this.btDashboard.Click += new System.EventHandler(this.btDashboard_Click);
             // 
-            // label1
+            // btDirections
             // 
-            this.label1.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(16, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(188, 55);
-            this.label1.Text = "label1";
+            this.btDirections.BackColor = System.Drawing.Color.DimGray;
+            this.btDirections.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btDirections.ForeColor = System.Drawing.Color.White;
+            this.btDirections.Location = new System.Drawing.Point(0, 202);
+            this.btDirections.Name = "btDirections";
+            this.btDirections.Size = new System.Drawing.Size(240, 59);
+            this.btDirections.TabIndex = 1;
+            this.btDirections.Text = "Directions";
+            this.btDirections.Click += new System.EventHandler(this.btDirections_Click);
             // 
-            // openFileDialog1
+            // btExit
             // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // mainMenu1
-            // 
-            this.mainMenu1.MenuItems.Add(this.menuItem1);
-            // 
-            // menuItem1
-            // 
-            this.menuItem1.Text = "Load";
-            this.menuItem1.Click += new System.EventHandler(this.menuItem1_Click);
-            // 
-            // timer1
-            // 
-            this.timer1.Interval = 3000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.btExit.BackColor = System.Drawing.Color.DimGray;
+            this.btExit.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btExit.ForeColor = System.Drawing.Color.White;
+            this.btExit.Location = new System.Drawing.Point(0, 261);
+            this.btExit.Name = "btExit";
+            this.btExit.Size = new System.Drawing.Size(240, 59);
+            this.btExit.TabIndex = 2;
+            this.btExit.Text = "Exit";
+            this.btExit.Click += new System.EventHandler(this.btExit_Click);
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(400, 400);
+            this.pictureBox1.Size = new System.Drawing.Size(240, 143);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             // 
             // Mainform
             // 
@@ -84,28 +86,26 @@ namespace PocketDashboard
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(257, 311);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.panel1);
+            this.ClientSize = new System.Drawing.Size(240, 320);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.btDashboard);
+            this.Controls.Add(this.btDirections);
+            this.Controls.Add(this.btExit);
             this.Location = new System.Drawing.Point(0, 0);
-            this.Menu = this.mainMenu1;
             this.Name = "Mainform";
             this.Text = "PocketDashboard";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.MainMenu mainMenu1;
-        private System.Windows.Forms.MenuItem menuItem1;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button btDashboard;
+        private System.Windows.Forms.Button btDirections;
+        private System.Windows.Forms.Button btExit;
         private System.Windows.Forms.PictureBox pictureBox1;
+
 
     }
 }

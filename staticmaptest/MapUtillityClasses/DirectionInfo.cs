@@ -45,6 +45,9 @@ namespace MapUtilities
             util = new MapsUtils(key);
             
             //OnePolyLineDrawnImages = new Image[Maps.Count];
+#if DESKTOP_VERSION
+            PreLoadAllMap();
+#endif
            
         }
 #if DESKTOP_VERSION

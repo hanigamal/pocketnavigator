@@ -163,10 +163,11 @@ namespace MapUtilities
             Pen p = new Pen(c, 5);
             g.DrawEllipse(p, (int)((float)mypoint.x - 3), (int)((float)mypoint.y - 3), 7, 7);
         }
-        public Image GetImageAndDrawMyLocationNPolyLineNTurn(double latitude, double longitude, List<LatLng> PolyLine,List<DirectionStep> steps,ref PixelPoint CurLoc)
+        public Image GetImageAndDrawMyLocationNPolyLineNTurn(double latitude, double longitude, List<LatLng> PolyLine,List<DirectionStep> steps,ref PixelPoint CurLoc,ref Size ImageSize)
         {
             PixelPoint mypoint = GetPointOnMe(new LatLng(latitude, longitude));
             CurLoc = mypoint;
+            ImageSize = new Size((int)this.m_width, (int)this.m_height);
             Bitmap bmp;
             if (this.m_Image != null)
             {

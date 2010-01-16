@@ -53,6 +53,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dashboard.Designer.cs">
+      <DependentUpon>Dashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Directionsform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Directionsform.Designer.cs">
+      <DependentUpon>Directionsform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DirectionSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DirectionSelect.Designer.cs">
+      <DependentUpon>DirectionSelect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GPSsignaling\DegreesMinutesSeconds.cs" />
+    <Compile Include="GPSsignaling\DeviceStateChangedEventArgs.cs" />
+    <Compile Include="GPSsignaling\GPS.cs" />
+    <Compile Include="GPSsignaling\GpsDeviceState.cs" />
+    <Compile Include="GPSsignaling\GpsPosition.cs" />
+    <Compile Include="GPSsignaling\LocationChangedEventArgs.cs" />
+    <Compile Include="GPSsignaling\Utils.cs" />
+    <Compile Include="INeedGps.cs" />
     <Compile Include="Mainform.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,6 +94,18 @@
     <Compile Include="MapUtillityClasses\StaticMapOverLay.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Dashboard.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Dashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Directionsform.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Directionsform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DirectionSelect.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DirectionSelect.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Mainform.resx">
       <SubType>Designer</SubType>
       <DependentUpon>Mainform.cs</DependentUpon>
