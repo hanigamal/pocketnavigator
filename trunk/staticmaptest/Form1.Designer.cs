@@ -51,6 +51,7 @@ namespace StaticMapTest
             this.label7 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btExport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -100,7 +101,7 @@ namespace StaticMapTest
             this.txtFrom.Name = "txtFrom";
             this.txtFrom.Size = new System.Drawing.Size(240, 20);
             this.txtFrom.TabIndex = 7;
-            this.txtFrom.Text = "Hi-tech City Main Road, Madhapur, Hyderabad, Andhra Pradesh, India";
+            this.txtFrom.Text = "YusufGuda, Hyderabad, Andhra Pradesh, India";
             // 
             // txtTo
             // 
@@ -108,7 +109,7 @@ namespace StaticMapTest
             this.txtTo.Name = "txtTo";
             this.txtTo.Size = new System.Drawing.Size(236, 20);
             this.txtTo.TabIndex = 8;
-            this.txtTo.Text = "Rajiv Gandhi International Airport,Shamshabad,  Andhra Pradesh, India";
+            this.txtTo.Text = ",begumpet, hyderabad,  Andhra Pradesh, India";
             // 
             // lblFrom
             // 
@@ -268,11 +269,22 @@ namespace StaticMapTest
             this.panel2.Size = new System.Drawing.Size(405, 411);
             this.panel2.TabIndex = 15;
             // 
+            // btExport
+            // 
+            this.btExport.Location = new System.Drawing.Point(214, 12);
+            this.btExport.Name = "btExport";
+            this.btExport.Size = new System.Drawing.Size(149, 23);
+            this.btExport.TabIndex = 23;
+            this.btExport.Text = "Export Direction Info";
+            this.btExport.UseVisualStyleBackColor = true;
+            this.btExport.Click += new System.EventHandler(this.btExport_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(961, 625);
+            this.Controls.Add(this.btExport);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.checkBox1);
@@ -326,6 +338,7 @@ namespace StaticMapTest
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button btExport;
     }
 }
 

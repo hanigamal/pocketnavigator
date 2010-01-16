@@ -8,6 +8,8 @@ using System.Windows.Forms;
 using System.Net;
 using System.Speech;
 using MapUtilities;
+using System.IO;
+using System.Xml.Serialization;
 
 
 namespace StaticMapTest
@@ -234,6 +236,20 @@ namespace StaticMapTest
             if (m_DirectionInfo != null)
             {
                 webBrowser1.Navigate("javascript://map.setCenter(new GLatLng(" + m_DirectionInfo.GetLatLngStringOfStartPoint() + "), 15);");
+            }
+        }
+
+        private void btExport_Click(object sender, EventArgs e)
+        {
+            
+            SaveFileDialog sfd = new SaveFileDialog();
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                string FileName=sfd.FileName;
+                FileStream fs = new FileStream(FileName, FileMode.Create, FileAccess.ReadWrite);
+                XmlSerializer serializer = new XmlSerializer(typeof(DirectionInfo));
+                serializer.Serialize(fs,m_DirectionInfo);
+                fs.Close();
             }
         }
 

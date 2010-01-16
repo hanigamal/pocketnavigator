@@ -43,9 +43,11 @@ namespace MapUtilities
             Maps.Add(img_level0);
             this.key = key;
             util = new MapsUtils(key);
-            
-            //OnePolyLineDrawnImages = new Image[Maps.Count];
-           
+
+#if DESKTOP_VERSION
+            PreLoadAllMap();
+#endif
+
         }
 #if DESKTOP_VERSION
         public void PreLoadAllMap()
@@ -65,7 +67,7 @@ namespace MapUtilities
         /// <param name="loction"></param>
         /// <param name="zoom_instruction"></param>
         /// <returns></returns>
-        public Image GetMap(LatLng loction, int zoom_instruction, ref PixelPoint MyLocation)
+        public Image GetMap(LatLng loction, int zoom_instruction, ref PixelPoint MyLocation,ref Size ImageSize)
         {
             int i = 0;
             int zoom=0;
@@ -84,19 +86,15 @@ namespace MapUtilities
                 i++;
             }
 
-            //if (OnePolyLineDrawnImages[pic_index] == null)
-            //{
+
 #if DESKTOP_VERSION
                 if (Maps[pic_index].GetImage() == null)
                 {
                     Maps[pic_index].LoadImageFromWeb();
                 }
 #endif
-            return Maps[pic_index].GetImageAndDrawMyLocationNPolyLineNTurn(loction.Lat, loction.Lng, Points, Steps, ref MyLocation);
+            return Maps[pic_index].GetImageAndDrawMyLocationNPolyLineNTurn(loction.Lat, loction.Lng, Points, Steps, ref MyLocation,ref ImageSize);
 
-             
-            //}
-            //return OnePolyLineDrawnImages[pic_index];
             
         }
         private int GetNearestPolyIndex(LatLng loction)
