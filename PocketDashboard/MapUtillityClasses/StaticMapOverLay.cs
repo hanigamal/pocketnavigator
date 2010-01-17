@@ -150,7 +150,7 @@ namespace MapUtilities
             SolidBrush trnsBlueBrush = new SolidBrush(Color.FromArgb(120, 255, 0, 0));
             g.DrawLines(new Pen(trnsBlueBrush, 5), Poly);
 #else
-            g.DrawLines(new Pen(Color.Red), Poly);
+            g.DrawLines(new Pen(Color.Red,5), Poly);
 #endif
             
             
@@ -190,6 +190,25 @@ namespace MapUtilities
             }
             
             return bmp;
+        }
+        public void DrawMyLocation_PolyLine_Turns(Graphics g, LatLng CurLocation, List<LatLng> PolyLine, List<DirectionStep> steps, ref PixelPoint CurLoc, ref Size ImageSize)
+        {
+            PixelPoint mypoint = GetPointOnMe(CurLocation);
+            CurLoc = mypoint;
+            ImageSize = new Size((int)this.m_width, (int)this.m_height);
+            if (this.m_Image != null)
+            {
+                g.DrawImage(this.m_Image, 0, 0);
+            }
+            DrawPolyLine(g, PolyLine);
+
+            foreach (DirectionStep d in steps)
+            {
+                this.DrawMarker(g, d.step_Location, Color.Red);
+            }
+            DrawMarker(g, CurLocation, Color.Blue);
+
+            
         }
         /// <summary>
         /// finds whether the given lat lng can be mapped on this static image or not.

@@ -13,7 +13,6 @@ namespace MapUtilities
         public SerializableList<LatLng> Points;
         public SerializableList<DirectionStep> Steps;
         public SerializableList<StaticMapOverLay> Maps;
-        //Image[] OnePolyLineDrawnImages;
         string key=null;
         MapsUtils util = null;
         bool isLostWay = true;
@@ -69,24 +68,8 @@ namespace MapUtilities
         /// <returns></returns>
         public Image GetMap(LatLng loction, int zoom_instruction, ref PixelPoint MyLocation,ref Size ImageSize)
         {
-            int i = 0;
-            int zoom=0;
-            int pic_index=0;
-            foreach (StaticMapOverLay img in Maps)
-            {
-                if (img.IsLocationMapable(loction.Lat, loction.Lng))
-                {
-                    if (zoom < img.GetZoom())
-                    {
-                        pic_index = i;
-                        zoom = img.GetZoom();
-                    }
-                                       
-                }
-                i++;
-            }
-
-
+            int pic_index = GetSuitableImageIndexForCurrentLocation(loction, zoom_instruction);
+           
 #if DESKTOP_VERSION
                 if (Maps[pic_index].GetImage() == null)
                 {
@@ -96,6 +79,52 @@ namespace MapUtilities
             return Maps[pic_index].GetImageAndDrawMyLocationNPolyLineNTurn(loction.Lat, loction.Lng, Points, Steps, ref MyLocation,ref ImageSize);
 
             
+        }
+        public int GetSuitableImageIndexForCurrentLocation(LatLng loction,int zoom_instruction)
+        {
+            int i = 0;
+            int zoom=0;
+            int pic_index=0;
+            if (zoom_instruction == 0)
+            {
+                foreach (StaticMapOverLay img in Maps)
+                {
+                    if (img.IsLocationMapable(loction.Lat, loction.Lng))
+                    {
+                        if (zoom < img.GetZoom())
+                        {
+                            pic_index = i;
+                            zoom = img.GetZoom();
+                        }
+
+                    }
+                    i++;
+                }
+                return pic_index;
+            }
+            else if (zoom_instruction == 1)
+            {
+                return Maps.Count - 2;
+            }
+            else
+            {
+                return Maps.Count - 1;
+            }
+
+        }
+        public void DrawMap(Graphics g,LatLng loction, int zoom_instruction, ref PixelPoint MyLocation, ref Size ImageSize)
+        {
+            int pic_index = GetSuitableImageIndexForCurrentLocation(loction,zoom_instruction);
+
+#if DESKTOP_VERSION
+                if (Maps[pic_index].GetImage() == null)
+                {
+                    Maps[pic_index].LoadImageFromWeb();
+                }
+#endif
+            Maps[pic_index].DrawMyLocation_PolyLine_Turns(g, loction, Points, Steps, ref MyLocation, ref ImageSize);
+
+
         }
         private int GetNearestPolyIndex(LatLng loction)
         {
@@ -135,10 +164,6 @@ namespace MapUtilities
                     if (cur_dis < 4000)
                     {
                        
-
-                        //double brng1 = util.GetBearing(Points[i], loction);
-                        //double brng2 = util.GetBearing(Points[k], loction);
-                        //(Math.Abs(brng1 - brng2) > 95 && Math.Abs(brng1 - brng2) < 275) || 
                         if ((cur_dis < distance))
                         {
                             distance = cur_dis;
