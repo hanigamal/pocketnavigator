@@ -37,19 +37,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\PocketDashboard\MapUtillityClasses\DirectionInfo.cs">
+      <Link>MapUtillityClasses\DirectionInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\PocketDashboard\MapUtillityClasses\DirectionStep.cs">
+      <Link>MapUtillityClasses\DirectionStep.cs</Link>
+    </Compile>
+    <Compile Include="..\PocketDashboard\MapUtillityClasses\LatLng.cs">
+      <Link>MapUtillityClasses\LatLng.cs</Link>
+    </Compile>
+    <Compile Include="..\PocketDashboard\MapUtillityClasses\MapsUtils.cs">
+      <Link>MapUtillityClasses\MapsUtils.cs</Link>
+    </Compile>
+    <Compile Include="..\PocketDashboard\MapUtillityClasses\PixelPoint.cs">
+      <Link>MapUtillityClasses\PixelPoint.cs</Link>
+    </Compile>
+    <Compile Include="..\PocketDashboard\MapUtillityClasses\SerializableList.cs">
+      <Link>MapUtillityClasses\SerializableList.cs</Link>
+    </Compile>
+    <Compile Include="..\PocketDashboard\MapUtillityClasses\StaticMapOverLay.cs">
+      <Link>MapUtillityClasses\StaticMapOverLay.cs</Link>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="MapUtillityClasses\DirectionInfo.cs" />
-    <Compile Include="MapUtillityClasses\DirectionStep.cs" />
-    <Compile Include="MapUtillityClasses\LatLng.cs" />
-    <Compile Include="MapUtillityClasses\MapsUtils.cs" />
-    <Compile Include="MapUtillityClasses\PixelPoint.cs" />
-    <Compile Include="MapUtillityClasses\SerializableList.cs" />
-    <Compile Include="MapUtillityClasses\StaticMapOverLay.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">

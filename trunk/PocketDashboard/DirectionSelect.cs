@@ -39,5 +39,11 @@ namespace PocketDashboard
             }
 
         }
+
+        private void btCancel_Click(object sender, EventArgs e)
+        {
+            papa.Show();
+            this.Close();
+        }
     }
 }

@@ -74,6 +74,7 @@ namespace PocketDashboard
             this.btCancel.Size = new System.Drawing.Size(240, 20);
             this.btCancel.TabIndex = 3;
             this.btCancel.Text = "Cancel";
+            this.btCancel.Click += new System.EventHandler(this.btCancel_Click);
             // 
             // DirectionSelect
             // 

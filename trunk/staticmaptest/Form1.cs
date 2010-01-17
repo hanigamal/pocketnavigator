@@ -48,7 +48,7 @@ namespace StaticMapTest
         private void Form1_Load(object sender, EventArgs e)
         {
             string MyPath=System.IO.Path.GetDirectoryName(Application.ExecutablePath);
-            webBrowser1.Navigate(new Uri("file://" + MyPath + "\\ClickMap.htm"));
+            webBrowser1.Navigate(new Uri("file://" + MyPath + "\\DirectionsTest.html"));
         }
 
         private void btPutMarker_Click(object sender, EventArgs e)
@@ -110,6 +110,8 @@ namespace StaticMapTest
                 MessageBox.Show("oops direction is not populated yet!!");
                 return;
             }
+            label2.Text = "Loading... will take a while..";
+            Application.DoEvents();
             SerializableList<DirectionStep> Steps = new SerializableList<DirectionStep>();
             string description = "";
             double lat=0;
@@ -175,10 +177,11 @@ namespace StaticMapTest
             try
             {
                 PixelPoint myloc=new PixelPoint();
+                Size mysize=new Size();
                 double lat = double.Parse(this.webBrowser1.Document.GetElementById("Lat").InnerText);
                 double lng = double.Parse(this.webBrowser1.Document.GetElementById("Lang").InnerText);
                 string str_zoom = this.webBrowser1.Document.GetElementById("Zoom").InnerText;
-                this.pictureBox1.Image = this.m_DirectionInfo.GetMap(new LatLng(lat, lng), 0,ref myloc);
+                this.pictureBox1.Image = this.m_DirectionInfo.GetMap(new LatLng(lat, lng), 0, ref myloc, ref mysize);
                 this.lblDirectionInfo.Text = this.m_DirectionInfo.GetDirectionDiscriptionFromLocation(new LatLng(lat, lng));
                 if ((this.pictureBox1.Left + myloc.x > panel2.Width)|| (this.pictureBox1.Left + myloc.x<0))
                 {
