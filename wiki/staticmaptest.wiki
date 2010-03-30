@@ -1,0 +1,10 @@
+#summary One-sentence summary of this page.
+
+= Introduction =
+
+staticmaptest is desktop part of this solution, which loads Maps data in browser control and dumps into a xml, so that mobile version can use it.
+
+note that these are just raw example and you should borrow only idea from this code to use in your application.
+
+
+
