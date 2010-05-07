@@ -1,0 +1,7 @@
+#describes Pocketdashboard
+
+= Introduction =
+
+Pocketdashboard is mobile app that consumes the XML exported by desktop app, to display turn by turn navigation on windows mobile phone (offline)
+
+Additionally it has another screen to display speed and lat, lag , which can be used as dashboard of your bike.
