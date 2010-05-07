@@ -32,7 +32,8 @@ You can call function {{{GetDirectionDiscriptionFromLocation(LatLng loc)}}} to g
 
 You can call this function to get the co-ordinate on Image which maps to a Latitude and Longitude  
 {{{
-GetCordinateOnStaticImage(double latitude, double longitude, double centerLat, double centerLang, int zoom,double width,double height)}}}
+GetCordinateOnStaticImage(double latitude, double longitude, double centerLat, double centerLang, int zoom,double width,double height)
+}}}
 
 
 ----------
