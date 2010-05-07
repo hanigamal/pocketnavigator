@@ -1,4 +1,5 @@
 #summary One-sentence summary of this page.
+#labels C,desktop,offlinemaps
 
 = Introduction =
 
@@ -6,5 +7,11 @@ staticmaptest is desktop part of this solution, which loads Maps data in browser
 
 note that these are just raw example and you should borrow only idea from this code to use in your application.
 
+== How To Export an XML Using Desktop Version ==
+  # Run desktop version and enter the directions
+  # Click button step1 (hold for few seconds, page will load)
+  # Click button step2 (hold for few seconds, page will load)
+  # Click Export button to export an XML file.
+  # Once the direction-info is extracted, you can export this in an xml file by clicking "export direction info button"
 
-
+Note: you need to keep this xml file in the same location on mobile where your executable is. executable reads all XML from its own directory.
