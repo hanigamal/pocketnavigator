@@ -30,6 +30,10 @@ On Desktop side it populates its data from web automatically if you provide Lat 
 Class [http://code.google.com/p/pocketnavigator/source/browse/trunk/PocketDashboard/MapUtillityClasses/DirectionInfo.cs DirectionInfo] is Toplevel class, contains few static images & steps of direction. 
 You can call function {{{GetDirectionDiscriptionFromLocation(LatLng loc)}}} to get the direction description.
 
+You can call this function to get the co-ordinate on Image which maps to a Latitude and Longitude  
+{{{
+GetCordinateOnStaticImage(double latitude, double longitude, double centerLat, double centerLang, int zoom,double width,double height)}}}
+
 
 ----------
 
