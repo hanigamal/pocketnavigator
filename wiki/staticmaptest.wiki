@@ -7,7 +7,7 @@ staticmaptest is desktop part of this solution, which loads Maps data in browser
 
 note that these are just raw example and you should borrow only idea from this code to use in your application.
 
-== How To Export an XML Using Desktop Version ==
+== How To Export an XML Using Desktop Version? ==
   # Run desktop version and enter the directions
   # Click button step1 (hold for few seconds, page will load)
   # Click button step2 (hold for few seconds, page will load)
@@ -15,3 +15,20 @@ note that these are just raw example and you should borrow only idea from this c
   # Once the direction-info is extracted, you can export this in an xml file by clicking "export direction info button"
 
 Note: you need to keep this xml file in the same location on mobile where your executable is. executable reads all XML from its own directory.
+
+
+== How Code Works? ==
+Map and direction info will be pulled by a peer Desktop application which will export all these information in an XML file. This XML file will have these 2 Items
+  # Static Map Images covering the track (at zoomed & top level)
+  # Direction steps and description.
+Static map images can be downloaded from Google using there [http://code.google.com/apis/maps/documentation/staticmaps/ static map API]. Direction steps and descriptions can only be downloaded via a AJAX API. Since I had only AJAX way of getting this data, I created a [http://code.google.com/p/pocketnavigator/source/browse/trunk/staticmaptest/DirectionsTest.html webpage] which can do all necessary DOM operation using JavaScript.  Once the DOM is populated i can easily grab the data from C# API (Web browser control + GetElementByID APIs).
+
+
+
+
+
+FAQ
+Q:How desktop APP and Mobile APP communicate with each other? use USB cable ? and how the mobile app read data from the computer app via the USB?
+ANS: No they don't communicate. XML file exported by desktop application will be read by mobile app (completely disconnected).
+
+
