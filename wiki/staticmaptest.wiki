@@ -28,7 +28,7 @@ Class [http://code.google.com/p/pocketnavigator/source/browse/trunk/PocketDashbo
 On Desktop side it populates its data from web automatically if you provide Lat & Lag(of center) and size. See different constructor for detail.
 
 Class [http://code.google.com/p/pocketnavigator/source/browse/trunk/PocketDashboard/MapUtillityClasses/DirectionInfo.cs DirectionInfo] is Toplevel class, contains few static images & steps of direction. 
-You can call function *_GetDirectionDiscriptionFromLocation(LatLng loc)_* to get the direction description.
+You can call function {{{GetDirectionDiscriptionFromLocation(LatLng loc)}}} to get the direction description.
 
 
 ----------
