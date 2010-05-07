@@ -23,7 +23,7 @@ Map and direction info will be pulled by a peer Desktop application which will e
   # Direction steps and description.
 Static map images can be downloaded from Google using there [http://code.google.com/apis/maps/documentation/staticmaps/ static map API]. Direction steps and descriptions can only be downloaded via a AJAX API. Since I had only AJAX way of getting this data, I created a [http://code.google.com/p/pocketnavigator/source/browse/trunk/staticmaptest/DirectionsTest.html webpage] which can do all necessary DOM operation using JavaScript.  Once the DOM is populated i can easily grab the data from C# API (Web browser control + GetElementByID APIs).
 
----
+----------
 
 *Frequently Asked Questions*<br>
 *Question*:How desktop APP and Mobile APP communicate with each other? use USB cable ? and how the mobile app read data from the computer app via the USB? <br>
