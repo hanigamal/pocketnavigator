@@ -136,7 +136,7 @@ On Mobile side its instantiated from XML de-serialization.
 }}}
 Class [http://code.google.com/p/pocketnavigator/source/browse/trunk/PocketDashboard/MapUtillityClasses/DirectionInfo.cs DirectionInfo] is Toplevel class, contains few static images & steps of direction. 
 
-{{
+{{{
 
 
     [Serializable]
@@ -152,11 +152,13 @@ Class [http://code.google.com/p/pocketnavigator/source/browse/trunk/PocketDashbo
 #if SPEECH_ENABLED  
         System.Speech.Synthesis.SpeechSynthesizer speaker = new System.Speech.Synthesis.SpeechSynthesizer();
 #endif
-        public DirectionInfo()
+        //use this constructor on mobile, for offline version. to serialize from XML
+		public DirectionInfo()
         {
             util = new MapsUtils(key);
             Maps = new SerializableList<StaticMapOverLay>();
         }
+		// once you provide direction step, it will figure out how many images will be required to cover this route. 
         public DirectionInfo(string key, SerializableList<LatLng> aPoints, SerializableList<DirectionStep> aSteps)
         {
             Points = aPoints;
@@ -181,6 +183,7 @@ Class [http://code.google.com/p/pocketnavigator/source/browse/trunk/PocketDashbo
 
         }
 #if DESKTOP_VERSION
+		/// To load all images at the desktop side.
         public void PreLoadAllMap()
         {
             foreach (StaticMapOverLay img in Maps)
@@ -192,45 +195,18 @@ Class [http://code.google.com/p/pocketnavigator/source/browse/trunk/PocketDashbo
             }
         }
 #endif
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="loction"></param>
-        /// <param name="zoom_instruction"></param>
-        /// <returns></returns>
+          /// Call this function to get image for direction information.
+		  ///zoom instruction to indicate zoomed image OR zoomed in image.
         public Image GetMap(LatLng loction, int zoom_instruction, ref PixelPoint MyLocation,ref Size ImageSize)
         {
-            int pic_index = GetSuitableImageIndexForCurrentLocation(loction, zoom_instruction);
-           
-#if DESKTOP_VERSION
-                if (Maps[pic_index].GetImage() == null)
-                {
-                    Maps[pic_index].LoadImageFromWeb();
-                }
-#endif
-            return Maps[pic_index].GetImageAndDrawMyLocationNPolyLineNTurn(loction.Lat, loction.Lng, Points, Steps, ref MyLocation,ref ImageSize);
-
+           //See code for detail
             
         }
-		/// <summary>
+		
         /// Call this function to draw image on your picture box (image etc) for direction information
-        /// </summary>
-        /// <param name="loction"></param>
-        /// <param name="zoom_instruction"></param>
-        /// <returns></returns>
-        public void DrawMap(Graphics g,LatLng loction, int zoom_instruction, ref PixelPoint MyLocation, ref Size ImageSize)
+         public void DrawMap(Graphics g,LatLng loction, int zoom_instruction, ref PixelPoint MyLocation, ref Size ImageSize)
         {
-            int pic_index = GetSuitableImageIndexForCurrentLocation(loction,zoom_instruction);
-
-#if DESKTOP_VERSION
-                if (Maps[pic_index].GetImage() == null)
-                {
-                    Maps[pic_index].LoadImageFromWeb();
-                }
-#endif
-            Maps[pic_index].DrawMyLocation_PolyLine_Turns(g, loction, Points, Steps, ref MyLocation, ref ImageSize);
-
-
+            //See code for detail
         }
        
         public string GetDirectionDiscriptionFromLocation(LatLng loc)
@@ -241,7 +217,7 @@ Class [http://code.google.com/p/pocketnavigator/source/browse/trunk/PocketDashbo
     }
 
 
-}}
+}}}
 
 You can call function 
 {{{
