@@ -25,6 +25,6 @@ Static map images can be downloaded from Google using there [http://code.google.
 
 ---
 
-*FAQ*
-*Q*:How desktop APP and Mobile APP communicate with each other? use USB cable ? and how the mobile app read data from the computer app via the USB? <br>
-*ANS*: No they don't communicate. XML file exported by desktop application will be read by mobile app (completely disconnected).
+*Frequently Asked Questions*<br>
+*Question*:How desktop APP and Mobile APP communicate with each other? use USB cable ? and how the mobile app read data from the computer app via the USB? <br>
+*Answer*: No they don't communicate. XML file exported by desktop application will be read by mobile app (completely disconnected).
