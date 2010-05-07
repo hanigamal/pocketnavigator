@@ -23,6 +23,14 @@ Map and direction info will be pulled by a peer Desktop application which will e
   # Direction steps and description.
 Static map images can be downloaded from Google using there [http://code.google.com/apis/maps/documentation/staticmaps/ static map API]. Direction steps and descriptions can only be downloaded via a AJAX API. Since I had only AJAX way of getting this data, I created a [http://code.google.com/p/pocketnavigator/source/browse/trunk/staticmaptest/DirectionsTest.html webpage] which can do all necessary DOM operation using JavaScript.  Once the DOM is populated i can easily grab the data from C# API (Web browser control + GetElementByID APIs).
 
+
+Class [http://code.google.com/p/pocketnavigator/source/browse/trunk/PocketDashboard/MapUtillityClasses/StaticMapOverLay.cs StaticMapOverLay] is representing static image , its serializable class, and can be serialized from XML , on mobile app.
+On Desktop side it populates its data from web automatically if you provide Lat & Lag(of center) and size. See different constructor for detail.
+
+Class [http://code.google.com/p/pocketnavigator/source/browse/trunk/PocketDashboard/MapUtillityClasses/DirectionInfo.cs DirectionInfo] is Toplevel class, contains few static images & steps of direction. 
+You can call function *_GetDirectionDiscriptionFromLocation(LatLng loc)_* to get the direction description.
+
+
 ----------
 
 *Frequently Asked Questions*<br>
