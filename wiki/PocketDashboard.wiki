@@ -8,7 +8,7 @@ Pocketdashboard is mobile app that consumes the XML exported by desktop app, to 
 Additionally it has another screen to display speed and lat, lag , which can be used as dashboard of your bike.
 
 == How it Uses GPS? ==
-You can see class GPS has build a wrapper around these native APIs
+You can see class GPS as a wrapper, around these native APIs
 {{{
      #region PInvokes to gpsapi.dll
         [DllImport("gpsapi.dll")]
