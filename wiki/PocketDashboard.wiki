@@ -1,7 +1,7 @@
 #labels GPS,maps,.net
-#describes Pocketdashboard
+#describes Mobile App of the project
 
-= Introduction =
+= Pocketdashboard Introduction =
 
 Pocketdashboard is mobile app that consumes the XML exported by desktop app, to display turn by turn navigation on windows mobile phone (offline)
 
