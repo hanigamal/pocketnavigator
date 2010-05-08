@@ -1,5 +1,5 @@
+#summary Describing Mobile App of this project
 #labels GPS,maps,.net
-#describes Mobile App of the project
 
 = Pocketdashboard Introduction =
 
