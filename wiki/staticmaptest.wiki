@@ -1,7 +1,7 @@
 #summary describing the core functionality of saving "direction Info" and related "Static map Images"
 #labels C,desktop,offlinemaps
 
-= Introduction =
+= staticmaptest Introduction =
 
 staticmaptest is desktop part of this solution, which loads Maps data in browser control and dumps into a xml, so that mobile version can use it.
 
