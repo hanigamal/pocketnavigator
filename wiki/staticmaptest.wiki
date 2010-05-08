@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#summary describing the core functionality of saving "direction Info" and related "Static map Images"
 #labels C,desktop,offlinemaps
 
 = Introduction =
