@@ -102,7 +102,8 @@ namespace StaticMapTest
         private void button3_Click(object sender, EventArgs e)
         {
             string MyPath = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
-            webBrowser1.Navigate(new Uri("file://" + MyPath + "\\DirectionsTest.html"));
+            //webBrowser1.Navigate(new Uri("file://" + MyPath + "\\DirectionsTest.html"));
+            webBrowser1.Navigate(new Uri("http://www.purplegene.com/static/DirectionsTest.html"));
         }
 
         private void btExtractDirectionInfo_Click(object sender, EventArgs e)
