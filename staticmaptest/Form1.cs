@@ -47,8 +47,10 @@ namespace StaticMapTest
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            string MyPath=System.IO.Path.GetDirectoryName(Application.ExecutablePath);
-            webBrowser1.Navigate(new Uri("file://" + MyPath + "\\DirectionsTest.html"));
+            //string MyPath=System.IO.Path.GetDirectoryName(Application.ExecutablePath);
+            //webBrowser1.Navigate(new Uri("file://" + MyPath + "\\DirectionsTest.html"));
+            /*Jus to avoid security Error in ie, change this to local path*/
+            webBrowser1.Navigate(new Uri("http://www.purplegene.com/static/DirectionsTest.html"));
         }
 
         private void btPutMarker_Click(object sender, EventArgs e)
@@ -65,8 +67,9 @@ namespace StaticMapTest
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string MyPath = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
-            webBrowser1.Navigate(new Uri("file://" + MyPath + "\\ClickMap.htm"));
+            //string MyPath = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
+            //webBrowser1.Navigate(new Uri("file://" + MyPath + "\\ClickMap.htm"));
+            webBrowser1.Navigate(new Uri("http://www.purplegene.com/static/ClickMap.htm"));
 
         }
 
